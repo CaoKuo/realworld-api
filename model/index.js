@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const { dbUri } = require('../config/config.default')
 
-main().catch(err => console.log('MongoDB 数据库连接失败', err));
-
 main().then(() => {
     console.log('数据库连接成功')
+}).catch((err) => {
+    console.log('MongoDB 数据库连接失败', err)
 })
 
 async function main() {
