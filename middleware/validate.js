@@ -1,8 +1,8 @@
-const { validationResult } = require('express-validator')
+const { validationResult } = require('express-validator');
 
 const validate = validations => {
     return async (req, res, next) => {
-        for (let validation of validations) {
+        for (const validation of validations) {
             const result = await validation.run(req);
             if (result.errors.length) break;
         }
@@ -16,4 +16,4 @@ const validate = validations => {
     };
 };
 
-module.exports = validate
+module.exports = validate;

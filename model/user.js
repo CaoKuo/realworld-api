@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 const baseModel = require('./base-model');
-const md5 = require('../util/md5')
+const md5 = require('../util/md5');
 
 const userSchema = new mongoose.Schema({
     ...baseModel,
     username: {
         type: String,
-        required: true, 
+        required: true,
     },
     email: {
         type: String,
-        required: true, 
+        required: true,
     },
     password: {
         type: String,
@@ -28,4 +28,4 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-module.exports = userSchema
+module.exports = userSchema;

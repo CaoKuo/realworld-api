@@ -1,4 +1,4 @@
-const crypto = require('crypto')
+const crypto = require('crypto');
 
 // 获取crypto支持的散列算法
 // console.log(crypto.getHashes())
@@ -12,5 +12,5 @@ const crypto = require('crypto')
 module.exports = str => {
     return crypto.createHash('md5')
         .update('user' + str)
-        .digest('hex')
-}
+        .digest('hex');
+};

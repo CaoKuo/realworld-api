@@ -5,15 +5,15 @@ const articleSchema = new mongoose.Schema({
     ...baseModel,
     username: {
         type: String,
-        required: true, 
+        required: true,
     },
     email: {
         type: String,
-        required: true, 
+        required: true,
     },
     password: {
         type: String,
-        required: true, 
+        required: true,
     },
     bio: {
         type: String,
@@ -25,4 +25,4 @@ const articleSchema = new mongoose.Schema({
     },
 });
 
-module.exports = articleSchema
+module.exports = articleSchema;
