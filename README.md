@@ -152,3 +152,11 @@ module.exports = {
     }
 };
 ```
+
+如果遇到下列问题：
+```
+✖ subject may not be empty [subject-empty]
+✖ type may not be empty [type-empty]
+```
+是由于提交不规范导致，需要在type后有一个空格再写body，如：
+`git commit -m "fix: ***"`
