@@ -14,7 +14,10 @@ class Users {
     // 用户登录
     async login (req, res, next) {
         try {
-            res.send('post /users/login');
+            console.log('res', res);
+            res.status(201).json({
+                login: true,
+            });
         } catch (error) {
             next(error);
         }

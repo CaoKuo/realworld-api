@@ -10,7 +10,8 @@ const login = [
     ]),
     validate([
         body('user.email').custom(async (email, { req }) => {
-            const user = await User.findOne({ email }).select('password');
+            const user = await User.findOne({ email })
+                .select(['email', 'username', 'bio', 'image', 'password']);
             if (!user) {
                 return Promise.reject(new Error('用户不存咋'));
             }
