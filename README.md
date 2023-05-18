@@ -153,6 +153,90 @@ module.exports = {
 };
 ```
 
+更加详细的示例：
+```
+module.exports = {
+    extends: [
+        "@commitlint/config-conventional"
+    ],
+    // 以下时我们自定义的规则
+    rules:  {
+        "type-enum": [
+            2,
+            "always",
+            [
+                "feat",
+                "fix",
+                "docs",
+                "style",
+                "refactor",
+                "perf",
+                "test",
+                "build",
+                "ci",
+                "chore",
+                "revert"
+            ]
+        ],
+        "type-case": [
+            2,
+            "always",
+            [
+                "lower-case"
+            ]
+        ],
+        "type-empty": [
+            2,
+            "never"
+        ],
+        "scope-empty": [
+            2,
+            "never"
+        ],
+        "scope-case": [
+            2,
+            "always",
+            [
+                "lower-case",
+                "upper-case",
+                "camel-case",
+                "kebab-case",
+                "pascal-case",
+                "sentence-case",
+                "snake-case",
+                "start-case"
+            ]
+        ],
+        "subject-case": [
+            2,
+            "always",
+            [
+                "lower-case",
+                "upper-case",
+                "camel-case",
+                "kebab-case",
+                "pascal-case",
+                "sentence-case",
+                "snake-case",
+                "start-case"
+            ]
+        ],
+        "subject-empty": [
+            2,
+            "never"
+        ],
+        "subject-full-stop": [
+            2,
+            "never"
+        ],
+        "header-max-length": [
+            2,
+            "always",
+            72
+        ] 
+};
+```
+
 如果遇到下列问题：
 ```
 ✖ subject may not be empty [subject-empty]
