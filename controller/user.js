@@ -1,4 +1,6 @@
 const { User } = require('../model');
+const jwt = require('../util/jwt');
+const { jwtSecret } = require('../config/config.default');
 
 class Users {
     constructor () {
@@ -14,9 +16,16 @@ class Users {
     // 用户登录
     async login (req, res, next) {
         try {
-            console.log('res', res);
-            res.status(201).json({
-                login: true,
+            const user = req.user.toJSON();
+            const token = await jwt.sign({
+                userId: user._id,
+            }, jwtSecret, {
+                expiresIn: 60 * 60 * 24,
+            });
+            delete user.password;
+            res.status(200).json({
+                ...user,
+                token,
             });
         } catch (error) {
             next(error);
@@ -45,7 +54,10 @@ class Users {
     // 获取当前登录用户
     async getCurrentUser (req, res, next) {
         try {
-            res.send('get /user');
+            console.log(req.headers);
+            res.status(200).json({
+                user: req.user,
+            });
         } catch (error) {
             next(error);
         }

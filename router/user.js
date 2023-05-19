@@ -1,6 +1,7 @@
 const express = require('express');
 const Users = require('../controller/user');
 const userValidator = require('../validator/user');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -11,9 +12,9 @@ router.post('/users/login', userValidator.login, Users.login);
 router.post('/users', userValidator.register, Users.register);
 
 // 获取当前登录用户
-router.get('/user', Users.getCurrentUser);
+router.get('/user', auth, Users.getCurrentUser);
 
 // 更新当前登录用户
-router.put('/user', Users.updateCurrentUser);
+router.put('/user', auth, Users.updateCurrentUser);
 
 module.exports = router;

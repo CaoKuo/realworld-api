@@ -1,3 +1,5 @@
+const { Article } = require('../model');
+
 class Articles {
     constructor () {
         this.getArticles = this.getArticles.bind(this);
@@ -43,7 +45,22 @@ class Articles {
     // 创建文章
     async createArticle (req, res, next) {
         try {
-            res.send('post /');
+            const article = new Article(req.body.article);
+            article.author = req.user._id;
+            // article.populate('author').execPopulate();
+            Article.find().populate('author').exec((err, articles) => {
+                if (err) {
+                    return res.status(400).json({
+                        error: 'User info is error',
+                    });
+                }
+                console.log(articles);
+            });
+            // await article.save();
+
+            // res.status(201).json({
+            //     article
+            // })
         } catch (error) {
             next(error);
         }
