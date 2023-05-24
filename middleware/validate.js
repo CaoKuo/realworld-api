@@ -1,6 +1,7 @@
-const { validationResult } = require('express-validator');
+const { validationResult, buildCheckFunction } = require('express-validator');
+const { isValidObjectId } = require('mongoose');
 
-const validate = validations => {
+exports = module.exports = validations => {
     return async (req, res, next) => {
         for (const validation of validations) {
             const result = await validation.run(req);
@@ -16,4 +17,10 @@ const validate = validations => {
     };
 };
 
-module.exports = validate;
+exports.isValidObjectId = (location, fields) => {
+    return buildCheckFunction(location)(fields).custom(async value => {
+        if (!isValidObjectId(value)) {
+            return Promise.reject(new Error('ID 不是一个有效的 objectID'));
+        }
+    });
+};
